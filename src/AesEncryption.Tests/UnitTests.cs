@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Security.Cryptography;
 using G42.AesEncryption.Core;
 using NUnit.Framework;
 
@@ -55,6 +56,26 @@ namespace G42.AesEncryption.Tests
             var decryptedText = _encryptionHelper.DecryptAsBase64(cipherText);
 
             Assert.AreEqual(plainText, decryptedText);
+        }
+
+        [Test]
+        public void Fail_To_Decrypt()
+        {
+            var plainText = "https://www.nsa.gov/";
+
+            AesEncryptionHelper.CipherKey = null;
+
+            var cipherText = _encryptionHelper.EncryptAsBase64(plainText);
+
+            Assert.AreNotEqual(plainText, cipherText);
+
+            AesEncryptionHelper.CipherKey = AesEncryptionHelper.GenerateCipherKey();//this will yield the wrong key that was used to encrypt
+
+            Assert.Throws<CryptographicException>(() =>
+            {
+                var decryptedText = _encryptionHelper.DecryptAsBase64(cipherText);
+            });
+
         }
 
         [Test]
