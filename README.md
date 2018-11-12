@@ -48,6 +48,6 @@ Get it on Nuget: https://www.nuget.org/packages/G42.AesEncryptionHelper.
 
 
 ## Nerd Notes
-1) Don't lost your key, you won't be able to recover it.
+1) Don't lose your key, you won't be able to recover it or the data that is encrypted with it.
 2) If you encrypt the same string twice, you will get two cipher text strings that are different. That is on purpose so that you cannot visually deduce that two cipher text strings contain the same information. This is due to the IV being random.
 3) If using Azure, you can place your key in the Azure App Settings to avoid source control storage.
