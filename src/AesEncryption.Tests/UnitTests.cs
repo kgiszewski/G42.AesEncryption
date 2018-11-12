@@ -83,22 +83,6 @@ namespace G42.AesEncryption.Tests
             }
         }
 
-        private string GetResource(string resourceLocation, Type type = null)
-        {
-            using (var stream = GetResourceStream(resourceLocation, type))
-            {
-                if (stream == null)
-                {
-                    return string.Empty;
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
-        }
-
         private Stream GetResourceStream(string resourceLocation, Type type = null)
         {
             var assembly = type == null ? Assembly.GetExecutingAssembly() : Assembly.GetAssembly(type);
