@@ -60,7 +60,7 @@ namespace G42.AesEncryption.Tests
         [Test]
         public void Can_Encrypt_And_Decrypt_Streams()
         {
-            using (var stream = GetResourceStream("G42.AesEncryption.Tests.Images.nsa.png"))
+            using (var stream = _getResourceStream("G42.AesEncryption.Tests.Images.nsa.png"))
             {
                 var base64PlainText = Convert.ToBase64String(_toByteArray(stream));
 
@@ -83,7 +83,7 @@ namespace G42.AesEncryption.Tests
             }
         }
 
-        private Stream GetResourceStream(string resourceLocation, Type type = null)
+        private Stream _getResourceStream(string resourceLocation, Type type = null)
         {
             var assembly = type == null ? Assembly.GetExecutingAssembly() : Assembly.GetAssembly(type);
 
