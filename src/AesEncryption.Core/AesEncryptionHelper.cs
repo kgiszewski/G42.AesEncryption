@@ -20,9 +20,9 @@ namespace G42.AesEncryption.Core
         {
             var aesKey = CipherKey ?? ConfiguredAesCipherKey;
 
-            if (ConfiguredAesCipherKey == null)
+            if (string.IsNullOrEmpty(aesKey))
             {
-                throw new Exception($"AES Key missing, ensure you are an using the correct app setting!");
+                throw new Exception($"AES Key missing, ensure you are an using the correct app setting (AesCipherKey) or set it in code!");
             }
 
             return Convert.FromBase64String(aesKey);
